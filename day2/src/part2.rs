@@ -65,16 +65,6 @@ impl Move {
         }
     }
 
-    pub fn compare(&self, opponent: Self) -> Outcome {
-        if *self == opponent {
-            Outcome::Draw
-        } else if self.wins_to() == opponent {
-            Outcome::Win
-        } else {
-            Outcome::Lose
-        }
-    }
-
     pub fn map_from_char(letter: &str) -> Self {
         match letter {
             "A" => Self::Rock,
@@ -101,7 +91,7 @@ pub fn play() {
         let opponent = Move::map_from_char(line_chars.next().unwrap());
         let outcome = Outcome::map_from_char(line_chars.next().unwrap());
         let own = outcome.condition_needed(opponent.clone());
-        total += own.value() + own.compare(opponent).value();
+        total += own.value() + outcome.value();
     }
     println!("Total points: {}", total)
 }
