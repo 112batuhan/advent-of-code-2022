@@ -19,9 +19,12 @@ impl Outcome {
 
     pub fn condition_needed(&self, opponent: Move) -> Move {
         match *self {
-            Self::Win => opponent.loses_to(),
             Self::Draw => opponent,
             Self::Lose => opponent.wins_to(),
+            // This could be done with two wins_to() instead of one loses_to().
+            // Win condition cycles so two wins_to() is equat to one loses_to().
+            // Self::Win => opponent.wins_to().wins_to()
+            Self::Win => opponent.loses_to(),
         }
     }
 
@@ -57,6 +60,7 @@ impl Move {
             Self::Scissor => Self::Paper,
         }
     }
+    // Could be removed and wins_to could be used twice instead. Win condition cycles anyway.
     pub fn loses_to(&self) -> Self {
         match *self {
             Self::Rock => Self::Paper,
