@@ -19,17 +19,7 @@ pub fn stacks() -> Vec<Vec<char>> {
     [C] [R] [P] [S] [V] [M] [V] [D] [Z]
     [F] [G] [H] [Z] [N] [P] [M] [N] [D]"#;
 
-    let mut stacks: Vec<Vec<char>> = vec![
-        vec![],
-        vec![],
-        vec![],
-        vec![],
-        vec![],
-        vec![],
-        vec![],
-        vec![],
-        vec![],
-    ];
+    let mut stacks: Vec<Vec<char>> = vec![vec![]; 9];
 
     let lines: Vec<&str> = raw.split("\n").collect();
     let lines = lines.into_iter().rev();

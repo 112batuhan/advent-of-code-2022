@@ -16,7 +16,7 @@ pub fn result() {
             .unwrap();
 
         let from_len = stacks[from - 1].len();
-        let mut moving_vec: Vec<char> = stacks[from - 1].drain(from_len - times..).collect();
+        let mut moving_vec = stacks[from - 1].split_off(from_len - times);
         stacks[to - 1].append(&mut moving_vec);
     }
     let result: String = stacks
