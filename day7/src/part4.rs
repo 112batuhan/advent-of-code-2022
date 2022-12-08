@@ -2,6 +2,7 @@ use crate::util::read_file;
 
 use itertools::Itertools;
 
+#[allow(dead_code)]
 #[derive(Debug)]
 pub struct Folder {
     path: Vec<String>,
