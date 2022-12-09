@@ -88,6 +88,7 @@ pub enum Actions {
     NewFolder(String),
 }
 
+//useless mapping. have the same match statement in main instead of this enum lol
 impl Actions {
     fn from_tokens(tokens: Vec<&str>) -> Self {
         let token_tuple: (&str, &str, &str) = tokens.into_iter().collect_tuple().unwrap();
