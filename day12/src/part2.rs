@@ -27,6 +27,14 @@ pub fn get_neighboring_coords(
     return_vec
 }
 
+pub fn convert_markers(marker: char) -> char {
+    match marker {
+        'S' => 'a',
+        'E' => 'z',
+        rest => rest,
+    }
+}
+
 pub fn result() {
     let lines = read_file("day12/src/input.txt");
     let height_map: Vec<Vec<char>> = lines
@@ -39,13 +47,13 @@ pub fn result() {
     let (start_vertical_index, start_line) = height_map
         .iter()
         .enumerate()
-        .find(|(_, line)| line.contains(&'S'))
+        .find(|(_, line)| line.contains(&'E'))
         .unwrap();
 
     let (start_horizontal_index, _) = start_line
         .iter()
         .enumerate()
-        .find(|(_, char)| **char == 'S')
+        .find(|(_, char)| **char == 'E')
         .unwrap();
 
     let start_coord = (start_vertical_index, start_horizontal_index);
@@ -63,22 +71,20 @@ pub fn result() {
         let mut new_paths_to_add: Vec<(usize, usize)> = vec![];
         for current_coord in &paths {
             let current_char = height_map[current_coord.0][current_coord.1];
-
-            if current_char == 'E' {
+            let current_char = convert_markers(current_char);
+            if current_char == 'a' {
                 break 'step;
             }
+
             for neighbor_coord in get_neighboring_coords(current_coord, &max_sizes) {
                 let (neighbor_ver, neighbor_hor) = &neighbor_coord;
 
                 let char_to_check = height_map[*neighbor_ver][*neighbor_hor];
+                let char_to_check = convert_markers(char_to_check);
 
-                if (!reached_places.contains(&neighbor_coord)
-                    && (0..=current_char as usize + 1).contains(&(char_to_check as usize)))
-                    || current_char == 'S'
+                if !reached_places.contains(&neighbor_coord)
+                    && (current_char as usize - 1..).contains(&(char_to_check as usize))
                 {
-                    if current_char != 'z' && char_to_check == 'E' {
-                        continue;
-                    }
                     new_paths_to_add.push(neighbor_coord);
                     reached_places.insert(neighbor_coord);
                 }
@@ -86,5 +92,5 @@ pub fn result() {
         }
         paths = new_paths_to_add;
     }
-    print!("day 12 part 1: {}", last_step);
+    println!("day 12 part 1: {}", last_step);
 }
