@@ -117,6 +117,8 @@ pub fn result() {
         .into_iter()
         .enumerate()
         .filter(|(_, x)| {
+            //slightly inefective to check both every iteration.
+            //We know that the second divider can't be found before first one is found, so it could be optimized but whatever.
             let first_comp = compare_object(x, &divider1);
             let second_comp = compare_object(x, &divider2);
             match (first_comp, second_comp) {
