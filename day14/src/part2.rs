@@ -110,6 +110,6 @@ pub fn result() {
             break;
         }
     }
-    println!("day 14 part 1 : {}", step + 1);
+    println!("day 14 part 2: {}", step + 1);
     //print_board(&coords);
 }
