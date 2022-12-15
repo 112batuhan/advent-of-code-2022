@@ -9,6 +9,4 @@ In my second attempt I decided to go for checking every possible position within
 My last attempt, I went back to line aprroach, calculating each intersecting range for the y coordinate that is being looped. This is similar to my part 1 and part 2 first attempt. But main difference is that instead of creating range objects and looping through them, I just merged them into one big range. This time, ranges are just two integers that represent upper and lower bounds. This only took number comparasions so the operations were lightweight and time complexity also dropped. ( O(n * m) )
 To know which y coordinate was the one we were searching for, the algorithm checked if the range merge was successul. With another function, the algorithm checks which x coordinate is not covered by the ranges and calculates the final result.
 
-I don't know if this is a common solution. I will look up the solutions online to see how others approached this one. But I feel like this approach is a bit too weird to be common. Well, I don't think I'm a genious snowflake that discovered a unique solution but whatever.
-
 This one took solid brainpower. I hope oncoming days won't be too harsh.
