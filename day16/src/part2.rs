@@ -145,7 +145,7 @@ pub fn result() {
 
     //dbg!(&non_0_valves[journeys[0].current_place].name);
     let mut finished_journeys: Vec<Journey> = vec![];
-    let mut let_first_go = false;
+    //let let_first_go = false;
     loop {
         let mut new_journeys: Vec<Journey> = vec![];
         for journey in &journeys {
@@ -219,7 +219,7 @@ pub fn result() {
         //if let_first_go {
         //    break;
         //}
-        let_first_go = true;
+        //let_first_go = true;
     }
 
     let max_flow = finished_journeys
